@@ -18,4 +18,5 @@ export const env = {
   decayIntervalMinutes: Number(process.env.DECAY_INTERVAL_MINUTES ?? 30),
   dailyRewardCoins: Number(process.env.DAILY_REWARD_COINS ?? 50),
   logLevel: process.env.LOG_LEVEL ?? 'info',
+  actionCooldownSeconds: Number(process.env.ACTION_COOLDOWN_SECONDS ?? 15),
 };

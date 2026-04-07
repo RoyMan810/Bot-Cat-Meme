@@ -39,6 +39,7 @@ Production-ready scaffold of a virtual kitten care bot using **Node.js + TypeScr
 ## 2) Core mechanics implemented
 
 - `/start` + inline keyboard with **"Завести питомца"**.
+- A user can create a pet only once.
 - Pet creation flow with kitten image + onboarding text.
 - Main action menu: feed, play, sleep, clean, heal, status, daily bonus.
 - Stat system: hunger, happiness, energy, health, level, age, XP.
@@ -67,6 +68,7 @@ PET_START_IMAGE_URL=https://...
 DECAY_INTERVAL_MINUTES=30
 DAILY_REWARD_COINS=50
 LOG_LEVEL=info
+ACTION_COOLDOWN_SECONDS=15
 ```
 
 ## 5) Run locally
@@ -84,3 +86,13 @@ For SQLite-based quick start, `prisma db push` creates tables directly from sche
 ```bash
 docker compose up --build -d
 ```
+
+## 7) Scaling suggestions
+
+1. Replace SQLite with PostgreSQL (Prisma schema change + migration).
+2. Add Redis for session/state cache and rate limiting.
+3. Move background decay to a dedicated worker process/queue (BullMQ).
+4. Add localization layer and content management for game text.
+5. Introduce inventory/shop tables and premium economy safeguards.
+6. Add analytics (events + funnels + cohort retention dashboard).
+7. Add anti-abuse controls (cooldowns, signed callback payloads).
