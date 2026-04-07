@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum PetStatus {
+  HEALTHY
+  SICK
+}
+
+model User {
+  id                Int       @id @default(autoincrement())
+  telegramId        BigInt    @unique
+  username          String?
+  firstName         String?
+  coins             Int       @default(100)
+  currentState      String    @default("main")
+  streakDays        Int       @default(0)
+  lastLoginAt       DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  pet               Pet?
+  transactions      Transaction[]
+}
+
+model Pet {
+  id                Int       @id @default(autoincrement())
+  userId            Int       @unique
+  name              String    @default("Котость")
+  hunger            Int       @default(70)
+  happiness         Int       @default(70)
+  energy            Int       @default(70)
+  health            Int       @default(100)
+  level             Int       @default(1)
+  xp                Int       @default(0)
+  ageDays           Int       @default(0)
+  status            PetStatus @default(HEALTHY)
+  accessoriesJson   String?
+  lastDecayAt       DateTime  @default(now())
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model DailyReward {
+  id                Int       @id @default(autoincrement())
+  userId            Int
+  claimedAt         DateTime  @default(now())
+
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, claimedAt])
+}
+
+model Transaction {
+  id                Int       @id @default(autoincrement())
+  userId            Int
+  amount            Int
+  type              String
+  note              String?
+  createdAt         DateTime  @default(now())
+
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
