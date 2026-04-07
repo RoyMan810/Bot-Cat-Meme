@@ -1,0 +1,27 @@
+{
+  "name": "moya-kotost-bot",
+  "version": "1.0.0",
+  "description": "Telegram virtual pet bot \"Моя котость\"",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.7.0",
+    "dotenv": "^16.5.0",
+    "pino": "^9.6.0",
+    "pino-pretty": "^13.0.0",
+    "telegraf": "^4.16.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.17",
+    "prisma": "^6.7.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
