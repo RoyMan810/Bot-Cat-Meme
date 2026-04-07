@@ -84,13 +84,3 @@ For SQLite-based quick start, `prisma db push` creates tables directly from sche
 ```bash
 docker compose up --build -d
 ```
-
-## 7) Scaling suggestions
-
-1. Replace SQLite with PostgreSQL (Prisma schema change + migration).
-2. Add Redis for session/state cache and rate limiting.
-3. Move background decay to a dedicated worker process/queue (BullMQ).
-4. Add localization layer and content management for game text.
-5. Introduce inventory/shop tables and premium economy safeguards.
-6. Add analytics (events + funnels + cohort retention dashboard).
-7. Add anti-abuse controls (cooldowns, signed callback payloads).
