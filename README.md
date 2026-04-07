@@ -73,9 +73,11 @@ LOG_LEVEL=info
 
 ```bash
 npm install
-npx prisma migrate dev --name init
+npm run prisma:push
 npm run dev
 ```
+
+For SQLite-based quick start, `prisma db push` creates tables directly from schema.
 
 ## 6) Run with Docker
 
