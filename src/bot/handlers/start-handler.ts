@@ -31,7 +31,7 @@ export function registerStartHandler(bot: Telegraf, deps: Deps) {
       await editOrReplyText(
         ctx,
         `С возвращением, ${tgUser.first_name}! Твоя котость уже ждёт тебя 🐱`,
-        mainActionsKeyboard,
+        { reply_markup: mainActionsKeyboard.reply_markup },
       );
       return;
     }
@@ -73,7 +73,7 @@ export function registerStartHandler(bot: Telegraf, deps: Deps) {
           caption:
             'Это твоя котость 🐱. Теперь ты должен заботиться о ней: кормить, играть и ухаживать.',
         },
-        mainActionsKeyboard,
+        { reply_markup: mainActionsKeyboard.reply_markup },
       );
       return;
     }
@@ -81,7 +81,7 @@ export function registerStartHandler(bot: Telegraf, deps: Deps) {
     await ctx.replyWithPhoto(env.petStartImageUrl, {
       caption:
         'Это твоя котость 🐱. Теперь ты должен заботиться о ней: кормить, играть и ухаживать.',
-      ...mainActionsKeyboard,
+      reply_markup: mainActionsKeyboard.reply_markup,
     });
   });
 }

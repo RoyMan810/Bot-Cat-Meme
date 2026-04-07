@@ -1,9 +1,10 @@
-import { Context, Markup } from 'telegraf';
+import { Context } from 'telegraf';
+import { InlineKeyboardMarkup } from 'telegraf/types';
 
 export async function editOrReplyText(
   ctx: Context,
   text: string,
-  keyboard?: ReturnType<typeof Markup.inlineKeyboard>,
+  keyboard?: { reply_markup: InlineKeyboardMarkup },
   useMarkdown = false,
 ) {
   const extra = {

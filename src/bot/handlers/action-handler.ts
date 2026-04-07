@@ -93,8 +93,14 @@ export function registerActionHandler(bot: Telegraf, deps: Deps) {
         }
         case 'status': {
           const pet = await deps.petService.ensurePet(user.id);
+          const latestUser = await deps.userRepo.getById(user.id);
           await ctx.answerCbQuery('Статус обновлен');
-          await editOrReplyText(ctx, deps.petService.buildPetView(pet), mainActionsKeyboard, true);
+          await editOrReplyText(
+            ctx,
+            deps.petService.buildPetView(pet, latestUser?.coins ?? user.coins),
+            mainActionsKeyboard,
+            true,
+          );
           break;
         }
         default:

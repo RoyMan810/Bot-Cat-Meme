@@ -84,7 +84,7 @@ export class PetService {
     xp: number;
     ageDays: number;
     status: 'HEALTHY' | 'SICK';
-  }) {
+  }, coins: number) {
     const nextLevelXp = this.progression.xpForNextLevel(pet.level);
     return [
       `🐱 *Твоя котость*`,
@@ -95,6 +95,7 @@ export class PetService {
       `⭐ Уровень: ${pet.level}`,
       `🧪 XP: ${pet.xp}/${nextLevelXp}`,
       `📅 Возраст: ${pet.ageDays} дн.`,
+      `🪙 Монеты: ${coins}`,
     ].join('\n');
   }
 }
